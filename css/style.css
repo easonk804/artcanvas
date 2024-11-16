@@ -1,40 +1,68 @@
-/* 禁用默认的触摸行为 */
-/* * {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    touch-action: none;
-} */
+/* 添加响应式布局的基础样式 */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+}
 
-/* 响应式设计 */
-/* @media (max-width: 768px) {
-    #layerContainer {
-        width: 100vw !important;
-        height: 100vh !important;
+/* 针对不同设备的媒体查询 */
+/* 手机端 - 小于768px */
+@media screen and (max-width: 767px) {
+    .main-content {
+        flex-direction: column;
     }
-    
+
+    .toolbar, .properties-panel {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .canvas-container {
+        width: 100%;
+        height: calc(100vh - 200px);
+    }
+}
+
+/* 平板端 - 768px 到 1024px */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .main-content {
+        flex-direction: row;
+    }
+
     .toolbar {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(10px);
+        width: 60px;
     }
-} */
 
-/* iPad 特定优化 */
-/* @supports (-webkit-touch-callout: none) {
-    /* iOS 设备特定样式 */
-    body {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
+    .properties-panel {
+        width: 200px;
     }
-} */
+
+    .canvas-container {
+        flex: 1;
+        height: calc(100vh - 100px);
+    }
+}
+
+/* 桌面端 - 大于 1024px */
+@media screen and (min-width: 1025px) {
+    .main-content {
+        flex-direction: row;
+    }
+
+    .toolbar {
+        width: 80px;
+    }
+
+    .properties-panel {
+        width: 250px;
+    }
+
+    .canvas-container {
+        flex: 1;
+        height: calc(100vh - 100px);
+    }
+}
 
 body { margin: 0; padding: 0; overflow: hidden; }
         .container {

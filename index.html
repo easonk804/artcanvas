@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/images/icons/icon-192x192.png">
+    <title>ArtCanva - 数字绘画应用</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 菜单栏 -->
+        <div class="menu-bar">
+            <button onclick="newFile()">新建</button>
+            <button onclick="openFile()">打开</button>
+            <button onclick="saveFile()">保存</button>
+            <button onclick="showHelp()">帮助</button>
+        </div>
+
+        <div class="main-content">
+            <!-- 工具栏 -->
+            <div class="toolbar">
+                <button id="brushTool">笔刷</button>
+                <button id="eraserTool">橡皮擦</button>
+                <input type="color" id="colorPicker" value="#000000">
+                <button id="undoBtn">撤销</button>
+                <button id="redoBtn">重做</button>
+            </div>
+
+            <!-- 画布容器 -->
+            <div class="canvas-container">
+                <div class="layer-container" id="layerContainer">
+                    <!-- 画布将通过JS动态添加 -->
+                </div>
+            </div>
+
+            <!-- 属性面板 -->
+            <div class="properties-panel">
+                <div>
+                    <label>笔刷大小</label>
+                    <input type="range" id="brushSize" min="1" max="50" value="5">
+                </div>
+                <div>
+                    <label>墨水浓度</label>
+                    <input type="range" id="inkDensity" min="0" max="100" value="100">
+                </div>
+                <div>
+                    <label>水分控制</label>
+                    <input type="range" id="waterControl" min="0" max="100" value="50">
+                </div>
+                <div>
+                    <label>纸张纹理</label>
+                    <select id="paperTexture">
+                        <option value="normal">普通</option>
+                        <option value="rough">粗糙</option>
+                        <option value="smooth">光滑</option>
+                    </select>
+                </div>
+                <div>
+                    <label>图层</label>
+                    <select id="layerSelector"></select>
+                    <button id="addLayer">添加图层</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <span id="canvasSize">画布尺寸: 800x600</span>
+            <span id="zoomLevel">缩放: 100%</span>
+            <span id="performance">FPS: 60</span>
+        </div>
+    </div>
+    <script src="js/app.js">
+        // 注册 Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(registration => {
+                    console.log("ServiceWorker registration successful");
+                })
+                .catch(err => {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+        }
+    </script>
+</body>
+</html>

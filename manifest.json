@@ -1,7 +1,7 @@
 {
     "name": "ArtCanvas",
     "short_name": "ArtCanvas",
-    "start_url": "/artbbit/Canvasboard",
+    "start_url": "/artcanvas/Canvasboard",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#000000",
